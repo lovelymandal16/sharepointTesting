@@ -346,6 +346,15 @@ export function attachEventListners(main) {
   }
   document.body.addEventListener('aue:ui-edit', ueEditModeHandler);
 }
+function enableAuthoringAssistantExtension() {
+  const meta = document.createElement('meta');
+  meta.name = 'urn:adobe:aue:config:extensions';
+ meta.content =   'https://experience.adobe.com/solutions/livecycle-forms-spa/static-assets/resources/universal_editor.html?livecycle-forms-spa_version=PR-554-66d1f803951ae7e4d13f3b812043d7b9ebb942fc';
+
+ console.log('Adding meta tag for aem forms authoring assistant extension:', meta.content);
+  document.head.appendChild(meta);
+}
+enableAuthoringAssistantExtension();
 
 const observer = new MutationObserver(instrumentForms);
 observer.observe(document, { childList: true, subtree: true, attributeFilter: ['form'] });
